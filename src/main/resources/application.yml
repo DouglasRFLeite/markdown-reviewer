@@ -1,12 +1,20 @@
 spring:
+  main:
+    lazy-initialization: true
+    banner-mode: off
   application:
     name: markdown-reviewer
   ai:
     openai:
-      api-key: --PREENCHER
+      api-key: ${OPEN_AI_KEY}
       chat:
         options:
           model: gpt-4.1-nano-2025-04-14
   shell:
     interactive:
       enabled: true
+logging:
+  level:
+    root: WARN
+    org.springframework: WARN
+    com.douglas.markdown_reviewer: WARN

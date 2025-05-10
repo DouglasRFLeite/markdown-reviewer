@@ -1,0 +1,5 @@
+#!/bin/bash
+
+APP_JAR="/home/douglas/code/MarkdownAIReviewe/markdown-reviewer/target/markdown-reviewer-0.0.1-SNAPSHOT.jar"
+
+exec java -jar "$APP_JAR" $1 --arg $2

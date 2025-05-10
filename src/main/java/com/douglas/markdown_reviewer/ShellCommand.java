@@ -19,8 +19,8 @@ public class ShellCommand {
   private final OpenAIService openAIService;
 
   @ShellMethod("Revisa um arquivo Markwon usando IA")
-  public void review(@ShellOption(help = "Filepath") String path) throws IOException {
-    String markdown = Files.readString(Path.of(path));
+  public void review(@ShellOption(help = "Filepath") String arg) throws IOException {
+    String markdown = Files.readString(Path.of(arg));
     String prompt = MarkdownPrompts.reviewMarkdown(markdown);
     String resultado = openAIService.prompt(prompt);
 
@@ -29,8 +29,8 @@ public class ShellCommand {
   }
 
   @ShellMethod("Corrige ortografia um arquivo Markwon usando IA")
-  public void correct(@ShellOption(help = "Filepath") String path) throws IOException {
-    String markdown = Files.readString(Path.of(path));
+  public void correct(@ShellOption(help = "Filepath") String arg) throws IOException {
+    String markdown = Files.readString(Path.of(arg));
     String prompt = MarkdownPrompts.correctMarkdown(markdown);
     String resultado = openAIService.prompt(prompt);
 
@@ -38,8 +38,12 @@ public class ShellCommand {
     System.out.println(resultado);
   }
 
-  @ShellMethod("Oi")
-  public void oi() {
-    System.out.println("Oi");
+  @ShellMethod("Manda o texto como prompt comum para a IA")
+  public void msg(@ShellOption(help = "Mensagem") String arg) {
+    String prompt = arg;
+    String resultado = openAIService.prompt(prompt);
+
+    System.out.println("\nResposta:\n");
+    System.out.println(resultado);
   }
 }
