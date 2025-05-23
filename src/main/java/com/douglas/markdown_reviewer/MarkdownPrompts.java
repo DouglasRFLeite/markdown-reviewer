@@ -55,4 +55,26 @@ public class MarkdownPrompts {
         .formatted(markdown);
     return prompt;
   }
+
+  public static String translateMarkdownToEnglish(String markdown) {
+    String prompt = """
+        You are a professional technical translator fluent in both Portuguese and English. You’re helping a Brazilian Tech Lead translate a Markdown article originally written in Portuguese into clear, natural-sounding English.
+
+        The article should:
+        - Maintain the author's original tone (professional, didactic, friendly)
+        - Preserve all Markdown formatting and structure
+        - Use idiomatic, native English that’s suitable for a technical audience
+        - Be suitable for publication on a blog and for reuse on LinkedIn
+
+        Your task is to **return the full translated article in English**, keeping everything else (headers, lists, code blocks) exactly as is.
+
+        ⚠️ Output only the translated Markdown. No explanations, no notes, no formatting changes.
+
+        ```markdown
+        %s
+        ```
+        """
+        .formatted(markdown);
+    return prompt;
+  }
 }

@@ -38,6 +38,16 @@ public class ShellCommand {
     System.out.println(resultado);
   }
 
+  @ShellMethod("Traduz um arquivo Markwon para Inglês usando IA")
+  public void translate(@ShellOption(help = "Filepath") String arg) throws IOException {
+    String markdown = Files.readString(Path.of(arg));
+    String prompt = MarkdownPrompts.translateMarkdownToEnglish(markdown);
+    String resultado = openAIService.prompt(prompt);
+
+    System.out.println("\nResultado da Tradução:\n");
+    System.out.println(resultado);
+  }
+
   @ShellMethod("Manda o texto como prompt comum para a IA")
   public void msg(@ShellOption(help = "Mensagem") String arg) {
     String prompt = arg;
